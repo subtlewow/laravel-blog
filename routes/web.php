@@ -15,14 +15,19 @@ use App\Models\Post;
 */
 
 Route::get('/', function () {
-    return view('posts');
+    return view('posts', [
+        'posts' => Post::all() // $posts
+    ]);
 });
 
-// Find a post by its slug (ie. part of a URL) and pass it to a view called "post"
 Route::get('posts/{post}', function($slug) {
-    // Calling $file in a blade template will return the file contents stored in $post
-    return view('post',[
-        'file' => Post::find($slug) // $file
+    // Load each post file by its slug and pass it to a view called "post"
+    $post = Post::find($slug);
+    
+    return view('post', [
+        'file' => $post
     ]);
+
+
 
 })->where('post', '[A-z_\-]+'); // Constraining wildcard to only characters, underscores and dashes of any length.

@@ -8,26 +8,12 @@
     <title>My Blog</title>
 </head>
 <body>
-    <article>
-        <h1><a href="/posts/my-first-post">My First Post</a></h1>
+    <?php foreach($posts as $file) : ?>
+        <article>
+            <?= $file ?>
+        </article>
+    <?php endforeach; ?>
 
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis illum, ad esse beatae illo adipisci voluptatem recusandae nulla porro voluptate nostrum numquam alias sint vero vitae neque laudantium! Suscipit, est.
-        Doloremque quae possimus repudiandae nemo est, minus eaque iure rerum impedit magni excepturi, odio maiores deserunt illum aperiam, ex reiciendis soluta libero nam qui ab iusto voluptatem a! Exercitationem, officia.</p>
-    </article>
 
-    <article>
-        <h1><a href="/posts/my-second-post">My Second Post</a></h1>
-
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis illum, ad esse beatae illo adipisci voluptatem recusandae nulla porro voluptate nostrum numquam alias sint vero vitae neque laudantium! Suscipit, est.
-        Doloremque quae possimus repudiandae nemo est, minus eaque iure rerum impedit magni excepturi, odio maiores deserunt illum aperiam, ex reiciendis soluta libero nam qui ab iusto voluptatem a! Exercitationem, officia.</p>
-    </article>
-
-    <article>
-        <h1><a href="/posts/my-third-post">My Third Post</a></h1>
-
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis illum, ad esse beatae illo adipisci voluptatem recusandae nulla porro voluptate nostrum numquam alias sint vero vitae neque laudantium! Suscipit, est.
-        Doloremque quae possimus repudiandae nemo est, minus eaque iure rerum impedit magni excepturi, odio maiores deserunt illum aperiam, ex reiciendis soluta libero nam qui ab iusto voluptatem a! Exercitationem, officia.</p>
-    </article>
-    
 </body>
 </html>
