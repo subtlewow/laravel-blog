@@ -8,9 +8,17 @@
     <title>My Blog</title>
 </head>
 <body>
-    <?php foreach($posts as $file) : ?>
+    <?php foreach($posts as $file): ?>
         <article>
-            <?= $file ?>
+            <h1>
+                <a href="/posts/<?= $file->slug; ?>">
+                    <?= $file->title; ?>
+                </a>
+            </h1>
+
+            <div>
+                <?= $file->body; ?>
+            </div>
         </article>
     <?php endforeach; ?>
 
