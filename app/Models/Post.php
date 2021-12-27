@@ -21,30 +21,30 @@ class Post {
         $this->slug = $slug;
     }
 
+    // Retrives all metadata from all post files and creates Post object from metadata properties.
     public static function all() {
-        return collect(File::files(resource_path("posts")))
-            ->map(fn($file)=>YamlFrontMatter::parseFile($file))
-            ->map(fn($document)=> new Post(
-                $document->title,
-                $document->excerpt, 
-                $document->date,
-                $document->body(),
-                $document->slug
-            ));
-    
+        // Creates collection 
+        return collect(File::files(resource_path("posts/")))
+            ->map(function ($file) {
+                // Retrieves metadata from all .html files in the post directory in the form of an object.
+                return YamlFrontMatter::parseFile($file); 
+            })
+
+            // Mapping over the $document objects
+            ->map(function ($document) {
+                // Creates Post object providing more control over its data, compared to using a Document object.
+                return new Post(
+                    $document->title,
+                    $document->excerpt,
+                    $document->date,
+                    $document->body(),
+                    $document->slug
+                );
+            });
     }
 
     public static function find($slug) {
-        // if (!file_exists($path = resource_path("posts/{$slug}.html"))) {
-        //     // Laravel has built-in exception for URL's not found, so use "ModelNotFoundException()" over "abort(404)" when possible.
-        //     throw new ModelNotFoundException();
-        // }
-
-        // // 10k users are accessing the same URL, means $post needs to be run 10k times.
-        // // Expensive operations such as these, can be cached.
-        // return cache()->remember("posts.{$slug}", now()->addMinutes(20), fn() => file_get_contents($path));
-
-        // Of all the blog posts, find the one with a slug that matches the one that was requested.
+        // From all the blog posts in the posts directory, access the post where the $slug matches the post requested.
         return static::all()->firstWhere('slug', $slug);
     }
 }

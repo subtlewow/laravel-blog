@@ -18,13 +18,6 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
 */
 
 Route::get('/', function () {
-    // Processes metadata at the top of a file wrapped in --'s.
-    // $document = YamlFrontMatter::parseFile (
-    //     resource_path('posts/my-fourth-post.html')
-    // );
-
-    // Find all the files in the posts directory and collect them into a Collection
-    // Map over each file and parse them into a document
     return view('posts', [
         'posts' => Post::all()
     ]);
