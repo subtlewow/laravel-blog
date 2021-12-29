@@ -8,19 +8,19 @@
     <title>My Blog</title>
 </head>
 <body>
-    <?php foreach($posts as $file): ?>
-        <article>
+    @foreach($posts as $file):
+        <article class="{{ $loop->even ? 'mb-6' : '' }}">
             <h1>
-                <a href="/posts/<?= $file->slug; ?>">
-                    <?= $file->title; ?>
+                <a href="/posts/{{ $file->slug; }}">
+                    {{ $file-> title; }}
                 </a>
             </h1>
 
             <div>
-                <?= $file->body; ?>
+                {!! $file->body; !!}
             </div>
         </article>
-    <?php endforeach; ?>
+    @endforeach;
 
 
 </body>

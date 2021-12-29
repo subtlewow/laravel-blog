@@ -10,12 +10,12 @@
 <body>
     <article>
         <h1>
-            <?= $file->title; ?>
+            {{ $file->title; }}
         </h1>
     </article>
 
     <div>
-        <?= $file->body; ?>
+        {!! $file->body; !!}
     </div>
 
     <a href="/">Go Back</a>

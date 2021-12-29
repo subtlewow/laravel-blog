@@ -13,6 +13,10 @@ class Post {
     public $body;
     public $slug;
 
+    /**
+     * 
+     * 
+     */
     public function __construct($title, $excerpt, $date, $body, $slug) {
         $this->title = $title;
         $this->excerpt = $excerpt;
@@ -23,8 +27,11 @@ class Post {
 
     // Retrives all metadata from all post files and creates Post object from metadata properties.
     public static function all() {
-        // Creates collection 
-        return collect(File::files(resource_path("posts/")))
+        
+        // For every HTTP request, the following logic is executed every time. 
+        // Soln: Instead of caching for specific period, cache forever -- we have to explicitly clear the cache whenver we make changes for the new changes to show up in the browser
+        return cache()->rememberForever('posts.all', function() {
+            return collect(File::files(resource_path("posts/")))
             ->map(function ($file) {
                 // Retrieves metadata from all .html files in the post directory in the form of an object.
                 return YamlFrontMatter::parseFile($file); 
@@ -40,12 +47,13 @@ class Post {
                     $document->body(),
                     $document->slug
                 );
-            });
+            })->sortByDesc('date');
+        });
     }
 
     public static function find($slug) {
         // From all the blog posts in the posts directory, access the post where the $slug matches the post requested.
-        return static::all()->firstWhere('slug', $slug);
+        return self::all()->firstWhere('slug', $slug);
     }
 }
 
