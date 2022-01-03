@@ -48,8 +48,19 @@ class Post {
     }
 
     public static function find($slug) {
-        // From all the blog posts in the posts directory, access the post where the $slug matches the post requested.
+        // From all the blog posts in the posts directory, access the post where the $slug matches the slug of the post requested.
         return self::all()->firstWhere('slug', $slug);
+
+    }
+
+    public static function findOrFail($slug) {
+        $posts = static::find($slug);
+        
+        if (!$posts) {
+            throw new ModelNotFoundException();
+        }
+
+        return $posts;
     }
 }
 
