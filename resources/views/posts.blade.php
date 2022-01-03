@@ -8,13 +8,13 @@
     @foreach($posts as $file)
         <article>
             <h1>
-                <a href="/posts/{{ $file->slug; }}">
-                    {{ $file-> title; }}
+                <a href="/posts/{{ $file->id; }}">
+                    {!! $file-> title; !!}
                 </a>
             </h1>
 
             <div>
-                {!! $file->body; !!}
+                {!! $file->excerpt; !!}
             </div>
         </article>
     @endforeach
