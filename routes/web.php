@@ -23,10 +23,10 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('posts/{post}', function($id) {
+Route::get('posts/{post:slug}', function(Post $post) {
     // Load each post file by its slug and pass it to a view called "post"
     return view('post', [
-        'file' => Post::findOrFail($id)
+        'file' => $post
     ]);
 
 });
