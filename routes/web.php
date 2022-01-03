@@ -29,4 +29,4 @@ Route::get('posts/{post}', function($slug) {
         'file' => Post::find($slug)
     ]);
 
-})->where('post', '[A-z_\-]+'); // Constraining wildcard to only characters, underscores and dashes of any length.
+});
