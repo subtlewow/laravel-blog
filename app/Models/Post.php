@@ -11,12 +11,11 @@ class Post extends Model
     
     // All parameters can be mass-assigned, aside from the ones specified
     // To turn off mass-assignment, set $guarded to empty array
-    protected $guarded = ['id'];
+    protected $guarded = [];
 
-    // These parameters can be mass-assigned
-    protected $fillable = [
-        'title',
-        'excerpt',
-        'body'
-    ];
+    // A post belongs to a category
+    public function category() {
+        return $this->belongsTo(Category::class);
+    }
+    
 }

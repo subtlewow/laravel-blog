@@ -5,11 +5,17 @@
         <h1>
             {{ $file->title; }}
         </h1>
+
+        <p>
+        <a href="/categories/{{$file->category->slug}}">{{ $file->category->name }}</a>
+        </p>
+
+        <div>
+            {!! $file->body; !!}
+        </div>
     </article>
 
-    <div>
-        {!! $file->body; !!}
-    </div>
+
 
     <a href="/">Go Back</a>
 @endsection

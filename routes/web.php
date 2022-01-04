@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Models\Post;
+use App\Models\Category;
 use Illuminate\Support\Facades\File;
 use Spatie\YamlFrontMatter\YamlFrontMatter;
 
@@ -28,5 +29,11 @@ Route::get('posts/{post:slug}', function(Post $post) {
     return view('post', [
         'file' => $post
     ]);
+});
 
+// Category click should show all posts associated with that category
+Route::get('categories/{category:slug}', function (Category $category) {
+    return view('posts', [
+        'posts' => $category
+    ]);
 });
