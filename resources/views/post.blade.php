@@ -7,15 +7,13 @@
         </h1>
 
         <p>
-        <a href="/categories/{{$file->category->slug}}">{{ $file->category->name }}</a>
+            By <a href='#'>{{ $file->user->name }}</a> in <a href="/categories/{{ $file->category->slug }}">{{ $file->category->name }}</a>
         </p>
 
         <div>
             {!! $file->body; !!}
         </div>
     </article>
-
-
 
     <a href="/">Go Back</a>
 @endsection
