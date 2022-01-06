@@ -14,7 +14,7 @@
             </h1>
 
             <p>
-                <a href="/categories/{{ $file->category->slug }}">{{ $file->category->name }}</a>
+                By <a href="/authors/{{ $file->author->username }}">{{ $file->author->name }}</a> in <a href="/categories/{{ $file->category->slug }}">{{ $file->category->name }}</a>
             </p>
 
 

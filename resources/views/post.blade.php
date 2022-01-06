@@ -7,8 +7,9 @@
         </h1>
 
         <p>
-            By <a href='#'>{{ $file->user->name }}</a> in <a href="/categories/{{ $file->category->slug }}">{{ $file->category->name }}</a>
+            By <a href="/authors/{{ $file->author->username }}">{{ $file->author->name }}</a> in <a href="/categories/{{ $file->category->slug }}">{{ $file->category->name }}</a>
         </p>
+
 
         <div>
             {!! $file->body; !!}

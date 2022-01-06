@@ -16,6 +16,8 @@ class PostFactory extends Factory
     public function definition()
     {
         return [
+            // Laravel automatically creates a user, grabs the id and assigns it to 'user_id'
+            // When a Post is created, a User is also created
             'user_id' => User::factory(),
             'category_id'=> Category::factory(),
             'title'=>$this->faker->sentence,

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Models\Post;
+use App\Models\User;
 use App\Models\Category;
 use Illuminate\Database\Console\DbCommand;
 use Illuminate\Support\Facades\DB;
@@ -22,7 +23,10 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
 
 Route::get('/', function () {
     return view('posts', [
-        'posts' => Post::with('category')->get()
+        // eager load the category and get the results
+
+        // latest() adds a order-by constraint (ie. enables us to sort by a particular parameter) -- default is "published_at"
+        'posts' => Post::latest()->get() 
     ]);
 });
 
@@ -37,5 +41,11 @@ Route::get('posts/{post:slug}', function(Post $post) {
 Route::get('categories/{category:slug}', function (Category $category) {
     return view('posts', [
         'posts' => $category->posts
+    ]);
+});
+
+Route::get('authors/{author:username}', function (User $author) {
+    return view('posts', [
+        'posts' => $author->posts
     ]);
 });
