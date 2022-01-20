@@ -29,7 +29,7 @@ class DatabaseSeeder extends Seeder
         //     'user_id' => $user->id
         // ]);
 
-        Post::factory(10)->create();
+        Post::factory(12)->create();
 
         // Post::factory(10)->create(); // creates user, category and post 
 
