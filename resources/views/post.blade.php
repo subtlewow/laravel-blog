@@ -6,13 +6,13 @@
                     <img src="/images/illustration-1.png" alt="" class="rounded-xl">
 
                     <p class="mt-4 block text-gray-400 text-xs">
-                        Published <time>{{ $file->created_at->diffForHumans() }}</time>
+                        Published <time>{{ $post->created_at->diffForHumans() }}</time>
                     </p>
 
                     <div class="flex items-center lg:justify-center text-sm mt-4">
                         <img src="/images/lary-avatar.svg" alt="Lary avatar">
                         <div class="ml-3 text-left">
-                            <h5 class="font-bold"></h5>
+                            <h5 class="font-bold">{{ $post->author->name }}</h5>
                         </div>
                     </div>
                 </div>
@@ -35,12 +35,7 @@
                         </a>
 
                         <div class="space-x-2">
-                            <a href="#"
-                                class="px-3 py-1 border border-blue-300 rounded-full text-blue-300 text-xs uppercase font-semibold"
-                                style="font-size: 10px">Techniques</a>
-                            <a href="#"
-                                class="px-3 py-1 border border-red-300 rounded-full text-red-300 text-xs uppercase font-semibold"
-                                style="font-size: 10px">Updates</a>
+                            <x-category-button :category="$post->category" />
                         </div>
                     </div>
 
@@ -50,48 +45,7 @@
                     </h1>
 
                     <div class="space-y-4 lg:text-lg leading-loose">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                            laboris nisi ut aliquip ex ea commodo consequat.</p>
-
-                        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                            pariatur.</p>
-
-                        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
-                            laudantium,
-                            totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae
-                            vitae
-                            dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut
-                            fugit.</p>
-
-                        <h2 class="font-bold text-lg">Sed quia consequuntur</h2>
-
-                        <p>Magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui
-                            dolorem
-                            ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi
-                            tempora
-                            incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
-
-                        <p>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam,
-                            nisi ut
-                            aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate
-                            velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas
-                            nulla
-                            pariatur?"</p>
-
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                            laboris nisi ut aliquip ex ea commodo consequat.</p>
-
-                        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                            pariatur.</p>
-
-                        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
-                            laudantium,
-                            totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae
-                            vitae
-                            dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut
-                            fugit.</p>
+                        {{ $post->body }}
                     </div>
                 </div>
             </article>

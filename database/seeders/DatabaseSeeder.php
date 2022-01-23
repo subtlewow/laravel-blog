@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder
      * @return void
      */
     public function run()
-    {   
+    {
         // only need if we need to refresh database multiple times throughout development
         User::truncate();
         Post::truncate();
@@ -29,9 +29,9 @@ class DatabaseSeeder extends Seeder
         //     'user_id' => $user->id
         // ]);
 
-        Post::factory(12)->create();
+        Post::factory(8)->create();
 
-        // Post::factory(10)->create(); // creates user, category and post 
+        // Post::factory(10)->create(); // creates user, category and post
 
         // $user = User::factory()->create();
 

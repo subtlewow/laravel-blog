@@ -26,26 +26,29 @@ Route::get('/', function () {
         // eager load the category and get the results
 
         // latest() adds a order-by constraint (ie. enables us to sort by a particular parameter) -- default is "published_at"
-        'posts' => Post::latest()->get() 
+        'posts' => Post::latest()->get(),
+        'categories' => Category::all()
     ]);
 });
 
 Route::get('posts/{post:slug}', function(Post $post) {
     // Load each post file by its slug and pass it to a view called "post"
     return view('post', [
-        'file' => $post
+        'post' => $post
     ]);
 });
 
 // Category click should show all posts associated with that category
 Route::get('categories/{category:slug}', function (Category $category) {
     return view('posts', [
-        'posts' => $category->posts
+        'posts' => $category->posts,
+        'categories' => Category::all()
     ]);
 });
 
 Route::get('authors/{author:username}', function (User $author) {
     return view('posts', [
-        'posts' => $author->posts
+        'posts' => $author->posts,
+        'categories' => Category::all()
     ]);
 });
