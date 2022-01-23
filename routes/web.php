@@ -22,11 +22,19 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
 */
 
 Route::get('/', function () {
+    $posts = Post::latest();
+
+    if (request('search')) {
+        $posts->where('title', 'like', '%'.request('search').'%')
+        ->orWhere('body', 'like', '%'.request('search').'%');
+    }
+
+
     return view('posts', [
         // eager load the category and get the results
 
         // latest() adds a order-by constraint (ie. enables us to sort by a particular parameter) -- default is "published_at"
-        'posts' => Post::latest()->get(),
+        'posts' => $posts->get(),
         'categories' => Category::all()
     ]);
 })->name('home');
