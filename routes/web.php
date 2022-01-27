@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Models\Post;
 use App\Models\User;
 use App\Models\Category;
+use App\Http\Controllers;
 use Illuminate\Database\Console\DbCommand;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
@@ -21,23 +22,7 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
 |
 */
 
-Route::get('/', function () {
-    $posts = Post::latest();
-
-    if (request('search')) {
-        $posts->where('title', 'like', '%'.request('search').'%')
-        ->orWhere('body', 'like', '%'.request('search').'%');
-    }
-
-
-    return view('posts', [
-        // eager load the category and get the results
-
-        // latest() adds a order-by constraint (ie. enables us to sort by a particular parameter) -- default is "published_at"
-        'posts' => $posts->get(),
-        'categories' => Category::all()
-    ]);
-})->name('home');
+Route::get('/', [PostController::class, 'index'])->name('home');
 
 Route::get('posts/{post:slug}', function(Post $post) {
     // Load each post file by its slug and pass it to a view called "post"
