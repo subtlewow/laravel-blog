@@ -9,7 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
-{   
+{
     // HasFactory -- looks for UserFactory
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -18,12 +18,9 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $fillable = [
-        'name',
-        'email',
-        'username',
-        'password',
-    ];
+
+    // everything can be mass assigned
+    protected $guarded = [];
 
     /**
      * The attributes that should be hidden for serialization.
