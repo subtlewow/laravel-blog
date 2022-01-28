@@ -41,6 +41,19 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    /**
+     * Encrypting password before saving to database
+     *
+     * Mutators are used to format the attributes b4 saving into database (ie. encrypting password)
+     * Called an Eloquent Mutator -- set[AttributeName]Attribute (ie. setPasswordAttribute, setEmailAttribute etc..)
+     *
+     * @return void
+     */
+    public function setPasswordAttribute($password) {
+        // before, password was not encrypted -- encrypting password
+        $this->attributes['password'] = bcrypt($password);
+    }
+
     public function posts() {
         return $this->hasMany(Post::class);
     }
