@@ -13,7 +13,7 @@ class RegisterController extends Controller
     }
 
     /**
-     * Submits POST request and saves User attributes
+     * Creates new user from the form data validated & submitted
      *
      * @return void
      */
@@ -27,8 +27,13 @@ class RegisterController extends Controller
             'password' => ['required', 'min:7', 'max:255']
         ]);
 
+        // previously, password was not encrypted -- encrypting password
+        $attributes['password'] = bcrypt($attributes['password']);
+
+        // using the data submitted, create a new user
         User::create($attributes);
 
+        // once form submitted redirect the user
         return redirect('/');
     }
 }
