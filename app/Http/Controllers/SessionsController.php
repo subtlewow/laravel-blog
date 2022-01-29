@@ -34,7 +34,8 @@ class SessionsController extends Controller
 
         // authentication success, redirects and flashes message
         if (auth()->attempt($attributes)) {
-            // regenerate session id -> prevents session fixation
+            // regenerate session id -> prevents session fixation (attacker attempts to steal ID of user sessions after they login)
+            session()->regenerate();
 
             // redirect with success flash message
             return redirect('/')->with('success', 'Welcome Back!');
