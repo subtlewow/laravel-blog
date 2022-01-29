@@ -6,11 +6,12 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
+// Handles the logic behind form submission
 class RegisterController extends Controller
 {
     public function create()
     {
-        return view('register.create');
+        return view('register.create-register');
     }
 
     /**
@@ -32,12 +33,15 @@ class RegisterController extends Controller
         ]);
 
         // using the data submitted, create a new user (note: mutator (setPasswordAttribute) has been created in the model to encrypt password)
-        User::create($attributes);
+        $user = User::create($attributes);
 
-        // creating flash message
-        session()->flash('success', 'Your account has been created.');
+        // user login
+        auth()->login($user);
 
-        // once form submitted redirect the user
-        return redirect('/');
+        // with() is used for eager loading which means that along the main model Laravel will preload the relationships you specify.
+        // With eager loading you only run one additional DB query instead of one for every model in the collection
+
+        // once form submitted redirect the user to home page, with the $key and flash message
+        return redirect('/')->with('success', 'Your account has been created.');
     }
 }
