@@ -44,13 +44,19 @@ class Post extends Model
         );
     }
 
-    // A post belongs to a category
+    // a post belongsto a category
     public function category() {
         return $this->belongsTo(Category::class);
     }
 
-    public function author() { // user() suggests that the foreign key is user_id and author() assumes a foreign key of author_id
+    // need to pass in foreign key as function name and model names differ; pass in the desirable column (ie. foreign key)
+    public function author() {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    // a post hasmany comments
+    public function comment() {
+        return $this->hasMany(Comment::class);
     }
 
 }
