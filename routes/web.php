@@ -17,11 +17,14 @@ Route::get('posts/{post:slug}', [PostController::class, 'show']);
  *  middleware('guest') means only guests can access this route
  */
 
+// only if user is a guest can they access the register route
 Route::get('register', [RegisterController::class, 'create'])->middleware('guest');
 Route::post('register', [RegisterController::class, 'store'])->middleware('guest');
 
+// only if user is a guest can they access the login route (which loads the login view)
 Route::get('login', [SessionsController::class, 'create'])->middleware('guest');
 Route::post('sessions', [SessionsController::class, 'store'])->middleware('guest');
 
+// only if user is authenticated (ie. logged in) can they access the logout route
 Route::post('logout', [SessionsController::class, 'destroy'])->middleware('auth');
 

@@ -9,7 +9,6 @@ use Illuminate\Http\Request;
 class PostController extends Controller
 {
     public function index() {
-
         return view('posts.index', [
             // eager load the category and get the results
             // latest() adds a order-by constraint (ie. enables us to sort by a particular parameter) -- default is "published_at"

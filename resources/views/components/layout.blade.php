@@ -24,7 +24,6 @@
 
                         <button type='submit' class='p-4 bg-red-500 ml-3 py-3 hover:text-black rounded-3xl text-white text-xs'>Log Out</button>
                     </form>
-
                 @else
                     <a href="/register" class="text-xs font-bold uppercase">Register</a>
                     <a href="/login" class="ml-6 text-xs font-bold uppercase">Login</a>

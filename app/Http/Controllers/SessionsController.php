@@ -23,15 +23,21 @@ class SessionsController extends Controller
      * @return void
      */
     public function store() {
-        // validate request
+        /**
+         * NOTES:
+         *
+         * #1: Rule::exists() -- validating whether or not email has been registered; could be a security risk (ie. a malicious user could potentially check for whether or not user x is registered for this site) -- optional, depends on type of application being developed
+         * #2: good practice to put "happy path" on the bottom and the "guard specific clauses" on the top (review EP51 if confused in L8FromScratch)
+         */
 
-        // Rule::exists() -- could be a security risk (ie. could check for whether or not user x is registered for this site? )
-        // validates each input parameter
+        // #1
+        // validates each input parameter submitted from the form
         $attributes = request()->validate([
             'email' => ['required', Rule::exists('users', 'email')],
             'password' => ['required']
         ]);
 
+        // #2
         // authentication success, redirects and flashes message
         if (!auth()->attempt($attributes)) {
             // when authentication fails, throw a validation exception with a message
@@ -55,8 +61,10 @@ class SessionsController extends Controller
      */
     public function destroy()
     {
+        // logs user out
         auth()->logout();
 
+        // redirects and flashes message
         return redirect('/login')->with('success', 'Goodbye!');
     }
 }

@@ -1,3 +1,7 @@
+{{--
+    View: Post page
+--}}
+
 <x-layout>
     <section class="px-6 py-8">
         <main class="max-w-6xl mx-auto mt-10 lg:mt-20 space-y-6">
@@ -42,8 +46,7 @@
                     </div>
 
                     <h1 class="font-bold text-3xl lg:text-4xl mb-10">
-                        This is a big title and it will look great on two or even three
-                        lines. Wooohoo!
+                        {{ $post->title }}
                     </h1>
 
                     <div class="space-y-4 lg:text-lg leading-loose">
@@ -51,12 +54,9 @@
                     </div>
 
                     <section class='col-span-8 col-start-5 mt-10 space-y-6'>
-                        <x-post-comment />
-                        <x-post-comment />
-                        <x-post-comment />
-                        <x-post-comment />
-                        <x-post-comment />
-
+                        @foreach ($post->comments as $comment)
+                            <x-post-comment :comment="$comment" />
+                        @endforeach
                     </section>
                 </div>
             </article>

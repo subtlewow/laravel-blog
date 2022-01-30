@@ -1,3 +1,9 @@
+{{--
+    View: Register new user form
+    Controller: 'RegisterController@create' -- loads the 'Register User' form view
+
+--}}
+
 <x-layout>
     <section class="px-6 py-8">
         <main class='max-w-lg mx-auto bg-gray-100 border border-gray-200 rounded-xl p-6 mt-10'>
